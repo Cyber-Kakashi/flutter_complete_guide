@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -7,17 +9,17 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
 
   void answerQuestions() {
     setState(() {
-      if (questionIndex < 1) {
-        questionIndex += 1;
+      if (_questionIndex < 1) {
+        _questionIndex += 1;
       }
     });
   }
@@ -32,20 +34,13 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(questions[questionIndex]),
+            Question(questions[_questionIndex]),
             ElevatedButton(
               child: Text('Answer 1'),
               onPressed: answerQuestions,
             ),
             ElevatedButton(
               child: Text('Answer 2'),
-              onPressed: () {
-                print('This is a lambda function');
-                print('this will execute');
-              },
-            ),
-            ElevatedButton(
-              child: Text('Answer 3'),
               onPressed: answerQuestions,
             ),
           ],
