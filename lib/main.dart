@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './answer.dart';
 import './question.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  void answerQuestions() {
+  void _answerQuestions() {
     setState(() {
       if (_questionIndex < 1) {
         _questionIndex += 1;
@@ -26,7 +27,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var questions = ['Question one?', 'Question 2?'];
+    var questions = [
+      'This is the first question from the set?',
+      'Second question is also great?'
+    ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -35,14 +39,8 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: [
             Question(questions[_questionIndex]),
-            ElevatedButton(
-              child: Text('Answer 1'),
-              onPressed: answerQuestions,
-            ),
-            ElevatedButton(
-              child: Text('Answer 2'),
-              onPressed: answerQuestions,
-            ),
+            Answer('Answer 1', _answerQuestions),
+            Answer('Answer 2', _answerQuestions),
           ],
         ),
       ),
